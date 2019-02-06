@@ -1,7 +1,7 @@
 
 let game = true;
 // Enemies our player must avoid
-var Enemy = function(x, y) {
+var Enemy = function(x, y, sprite, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -9,7 +9,8 @@ var Enemy = function(x, y) {
     // a helper we've provided to easily load images
       this.x = x;
       this.y = y;
-      this.sprite = 'images/enemy-bug.png';
+      this.sprite = sprite;
+      this.speed = speed;
       this.height = 65;
       this.width = 95;
       this.collision = false;
@@ -21,11 +22,11 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    
+
         if(this.x > ctx.canvas.width){
-          this.x = -150 * Math.floor(Math.random() * 4);
+          this.x = -(this.speed * Math.floor(Math.random() * 4)) ;
         } else {
-          this.x += 190 * dt;
+          this.x += this.speed * dt;
         }
     //Check for collision with Player
     if(collision(player.x, player.y, player.width, player.height, this.x, this.y, this.width, this.height)){
@@ -57,8 +58,11 @@ var Player = function(x, y, sprite) {
 
 // This class requires an update(), render() and
 Player.prototype.update = function(dt) {
+    //Win logic of the game
       if(game && player.y < 40){
+    //Stopping the game loop
         game = false;
+    // Calling winGame function to activate alert
         setTimeout(winGame, 1000);
       }
 };
@@ -87,11 +91,15 @@ Player.prototype.handleInput = function(direction) {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-let enemyPositions = [55, 140, 230, 143, 57];
 
-let allEnemies = enemyPositions.map((y, index)=> {
-    return new Enemy((-200 * (index + 1)), y);
-});
+let allEnemies = [];
+
+const bug1 = new Enemy(-101, 55, 'images/enemy-bug.png', 150);
+const rock1 = new Enemy(-300, 140, 'images/Rock.png', 200);
+const rock2 = new Enemy(-200, 230, 'images/Rock.png', 150);
+const bug2 = new Enemy(-451, 145, 'images/enemy-bug.png', 170);
+
+allEnemies.push(bug1, rock1, rock2, bug2);
 
 // Place the player object in a variable called player
 let player = new Player(202, 400, 'images/char-horn-girl.png');
