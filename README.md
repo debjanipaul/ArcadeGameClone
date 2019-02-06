@@ -1,20 +1,18 @@
 # Classic Arcade Game Clone Project
 
-## Table of Contents
+An Arcade Game with enemy bugs and rocks. Player have to cross them all to reach the river to win.
 
-- [Instructions](#instructions)
-- [Contributing](#contributing)
+## How To Play?
 
-## Instructions
+1. Download or clone the Arcade Game repository to your local machine.
+2. Extract the .zip file.
+3. Open the index.html file in your favorite browser.
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checking your submission.
+## Rules of the game
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
+- Move the Player to "Right", "left", "Up", "Down" with arrow keys.
+- Cross the path without colliding with enemy bugs and rocks.
+- If the player collides with enemies, the game will reset the player to start position.
 
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+This game is built with HTML, CSS and Object Oriented Javascript.  
