@@ -1,7 +1,8 @@
 
 let game = true;
+
 // Enemies our player must avoid
-var Enemy = function(x, y, sprite, speed) {
+let Enemy = function(x, y, sprite, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -22,24 +23,24 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-
-        if(this.x > ctx.canvas.width){
+      if(this.x > ctx.canvas.width){
           this.x = -(this.speed * Math.floor(Math.random() * 4)) ;
-        } else {
+      } else {
           this.x += this.speed * dt;
-        }
-    //Check for collision with Player
-    if(collision(player.x, player.y, player.width, player.height, this.x, this.y, this.width, this.height)){
-      this.collision = true;
-
-    //reset the Player position
-      if(player) {
-        player.x = 202;
-        player.y = 400;
       }
-    } else {
-      this.collision = false;
-    }
+
+    //Check for collision with Player
+      if(collision(player.x, player.y, player.width, player.height, this.x, this.y, this.width, this.height)){
+          this.collision = true;
+
+          //reset the Player position
+          if(player) {
+            player.x = 202;
+            player.y = 400;
+          }
+       } else {
+          this.collision = false;
+      }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -48,7 +49,7 @@ Enemy.prototype.render = function() {
 };
 
 // Now write your own player class
-var Player = function(x, y, sprite) {
+let Player = function(x, y, sprite) {
       this.x = x;
       this.y = y;
       this.sprite = sprite;
@@ -59,7 +60,7 @@ var Player = function(x, y, sprite) {
 // This class requires an update(), render() and
 Player.prototype.update = function(dt) {
     //Win logic of the game
-      if(game && player.y < 40){
+      if(game && this.y < 40){
     //Stopping the game loop
         game = false;
     // Calling winGame function to activate alert
@@ -83,7 +84,7 @@ Player.prototype.handleInput = function(direction) {
           this.x += horizontal;
     } else if (direction === "down" && this.y + vertical < ctx.canvas.height -200){
           this.y += vertical;
-    } else if (direction === "up" && this.y - vertical >= 0 - player.height){
+    } else if (direction === "up" && this.y - vertical >= 0 - this.height){
           this.y -= vertical;
     }
 };
@@ -91,7 +92,6 @@ Player.prototype.handleInput = function(direction) {
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-
 let allEnemies = [];
 
 const bug1 = new Enemy(-101, 55, 'images/enemy-bug.png', 150);
